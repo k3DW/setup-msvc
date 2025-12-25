@@ -1,0 +1,46 @@
+# Copyright 2025 Braden Ganetsky
+# Distributed under the Boost Software License, Version 1.0.
+# https://www.boost.org/LICENSE_1_0.txt
+
+name: 'Setup MSVC'
+description: 'Downloads, installs, and sets up the environment for a particular version of MSVC'
+author: 'Braden Ganetsky'
+
+inputs:
+  vs-version:
+    required: true
+  bootstrapper-url:
+    required: true
+  install-path:
+    default: ..\vs-install
+
+runs:
+  using: "composite"
+  steps:
+    - name: Download and install VS Build Tools, and setup MSVC environment
+      shell: powershell
+      run: |
+        mkdir ${{ inputs.install-path }} -Force
+        $installPath = Resolve-Path ${{ inputs.install-path }}
+
+        curl.exe -L -o vs_buildtools.exe ${{ inputs.bootstrapper-url }}
+
+        Start-Process `
+          -FilePath ".\vs_buildtools.exe" `
+          -ArgumentList @(
+            '--quiet', '--norestart',
+            '--installPath', $installPath,
+            '--add', 'Microsoft.VisualStudio.Component.VC.${{ inputs.vs-version }}.x86.x64',
+            '--add', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64',
+            '--includeRecommended',
+            '--noUpdateInstaller'
+          ) `
+          -NoNewWindow `
+          -Wait
+
+        rm .\vs_buildtools.exe
+
+        cmd /c "$installPath\VC\Auxiliary\Build\vcvars64.bat >nul && set" |
+          ForEach-Object {
+            Add-Content $env:GITHUB_ENV $_
+          }
