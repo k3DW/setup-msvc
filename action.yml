@@ -9,8 +9,6 @@ author: 'Braden Ganetsky'
 inputs:
   vs-version:
     required: true
-  bootstrapper-url:
-    required: true
   install-path:
     default: ..\vs-install
 
@@ -23,14 +21,26 @@ runs:
         mkdir ${{ inputs.install-path }} -Force
         $installPath = Resolve-Path ${{ inputs.install-path }}
 
-        curl.exe -L -o vs_buildtools.exe ${{ inputs.bootstrapper-url }}
+        $scriptOutput = python ${{ github.action_path }}/get_install_args.py ${{ inputs.vs-version }} 2>&1
+        if ($LASTEXITCODE -eq 0) {
+          $vsVersion = $scriptOutput[0]
+          $bootstrapper = $scriptOutput[1]
+          $componentID = $scriptOutput[2]
+          Write-Host "Installing Visual Studio $vsVersion at $installPath"
+        } else {
+          Write-Host "get_install_args.py failed with exit code: $LASTEXITCODE"
+          Write-Host $scriptOutput
+          exit $LASTEXITCODE
+        }
+
+        curl.exe -L -o vs_buildtools.exe $bootstrapper
 
         Start-Process `
           -FilePath ".\vs_buildtools.exe" `
           -ArgumentList @(
             '--quiet', '--norestart',
             '--installPath', $installPath,
-            '--add', 'Microsoft.VisualStudio.Component.VC.${{ inputs.vs-version }}.x86.x64',
+            '--add', $componentID,
             '--add', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64',
             '--includeRecommended',
             '--noUpdateInstaller'
