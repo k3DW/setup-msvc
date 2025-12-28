@@ -8,7 +8,7 @@ This example uses Visual Studio 17.13.3, as described in [this article](https://
 
 ```yml
 - name: Setup MSVC
-  uses: k3DW/setup-msvc@main
+  uses: k3DW/setup-msvc@v1
   with:
     vs-version: 17.13.3
 ```
