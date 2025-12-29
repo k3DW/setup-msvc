@@ -2,6 +2,8 @@
 
 A composite GitHub Action to download, install, and setup the environment for a particular version of MSVC on Windows.
 
+This is specifically meant for C++, and only installs the minimal components needed to set up the environment and compile C++.
+
 ## Usage example
 
 This example uses Visual Studio 17.13.3, as described in [this article](https://blog.ganets.ky/MsvcGha).
