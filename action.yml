@@ -33,7 +33,7 @@ runs:
           exit $LASTEXITCODE
         }
 
-        curl.exe -L -o vs_buildtools.exe $bootstrapper
+        Invoke-Webrequest -Uri $bootstrapper -OutFile vs_buildtools.exe
 
         Start-Process `
           -FilePath ".\vs_buildtools.exe" `
