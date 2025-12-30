@@ -15,7 +15,7 @@ def fetch_html(url: str) -> str:
 def extract_bootstrappers(html: str) -> dict:
     # This pattern matches the version-specific URLs to the build tools.
     # The format is different between 2019 and 2022/2026, but this works for both formats.
-    pattern = r"""<td>(\d{2}\.\d{1,2}\.\d{1,2})</td>.*?<a href="([^"]*?vs_[Bb]uild[Tt]ools\.exe)".*?>(?:<u>)?Build ?Tools(?:</u>)?</a></td>"""
+    pattern = r"""<td>(\d{2}\.\d{1,2}\.\d{1,2})(?: \(\w+ \d+\))?</td>.*?<a href="([^"]*?vs_[Bb]uild[Tt]ools\.exe)".*?>(?:<u>)?Build ?Tools(?:</u>)?</a></td>"""
 
     matches = re.findall(pattern, html, re.DOTALL)
     assert len(matches) > 0
@@ -51,6 +51,7 @@ def scrape_bootstrappers_2022() -> dict:
     assert "17.2.20" in bootstrappers
     assert "17.7.5" in bootstrappers
     assert "17.13.3" in bootstrappers
+    assert "17.14.21" in bootstrappers
     assert "17.14.23" in bootstrappers
     return bootstrappers
 
