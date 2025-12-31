@@ -1,0 +1,66 @@
+# Copyright 2025 Braden Ganetsky
+# Distributed under the Boost Software License, Version 1.0.
+# https://www.boost.org/LICENSE_1_0.txt
+
+name: ci
+
+on:
+  workflow_dispatch:
+
+jobs:
+  msc_full_ver_test:
+    strategy:
+      matrix:
+        include:
+          # Check a random assortment of versions
+          - {vs-version: "16.0.0",   msc-full-ver: "192027508"}
+          - {vs-version: "16.1.4",   msc-full-ver: "192127702"}
+          - {vs-version: "16.6.5",   msc-full-ver: "192628806"}
+          - {vs-version: "16.7.2",   msc-full-ver: "192729111"}
+          - {vs-version: "16.10.0",  msc-full-ver: "192930037"}
+          - {vs-version: "16.10.4",  msc-full-ver: "192930040"}
+          - {vs-version: "16.10",    msc-full-ver: "192930040"}
+          - {vs-version: "16.11.26", msc-full-ver: "192930148"}
+          - {vs-version: "16.11.53", msc-full-ver: "192930159"}
+          - {vs-version: "17.0.0",   msc-full-ver: "193030705"}
+          - {vs-version: "17.0.5",   msc-full-ver: "193030709"}
+          - {vs-version: "17.0.23",  msc-full-ver: "193030715"}
+          - {vs-version: "17.0",     msc-full-ver: "193030715"}
+          - {vs-version: "17.1.0",   msc-full-ver: "193131104"}
+          - {vs-version: "17.8.20",  msc-full-ver: "193833145"}
+          - {vs-version: "17.10.13", msc-full-ver: "194033820"}
+          - {vs-version: "17.13.3",  msc-full-ver: "194334809"}
+          - {vs-version: "17.13.7",  msc-full-ver: "194334810"}
+          - {vs-version: "17.13",    msc-full-ver: "194334810"}
+          - {vs-version: "17.14.5",  msc-full-ver: "194435209"}
+          - {vs-version: "17.14.21", msc-full-ver: "194435221"}
+          - {vs-version: "17.14.23", msc-full-ver: "194435222"}
+
+    runs-on: windows-2025
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup MSVC
+        uses: k3DW/setup-msvc@v1
+        with:
+          vs-version: "${{ matrix.vs-version }}"
+
+      - name: Build the tests
+        run: |
+          cd tests
+          mkdir build
+          if ("${{ matrix.vs-version }}".StartsWith("16.")) {
+            cmake . -B build -G "Visual Studio 16 2019"
+          } elseif ("${{ matrix.vs-version }}".StartsWith("17.")) {
+            cmake . -B build -G "Visual Studio 17 2022"
+          } else {
+            Write-Host "Currently only VS 2019 and VS 2022 are supported in testing"
+            exit 1
+          }
+          cmake --build build --target msc_full_ver
+
+      - name: Run the tests
+        run: |
+          cd tests
+          & .\build\Debug\msc_full_ver.exe ${{ matrix.msc-full-ver }}
