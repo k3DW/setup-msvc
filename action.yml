@@ -60,7 +60,7 @@ runs:
 
         rm .\vs_buildtools.exe
 
-        cmd /c "$k3DW_setup_msvc_installPath\VC\Auxiliary\Build\vcvars64.bat >nul && set" |
+        cmd /c "$env:k3DW_setup_msvc_installPath\VC\Auxiliary\Build\vcvars64.bat >nul && set" |
           ForEach-Object {
             Add-Content $env:GITHUB_ENV $_
           }
