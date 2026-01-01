@@ -58,6 +58,19 @@ runs:
           -NoNewWindow `
           -Wait
 
+        Start-Process `
+          -FilePath ".\vs_buildtools.exe" `
+          -ArgumentList @(
+            '--quiet', '--norestart',
+            '--installPath', $env:k3DW_setup_msvc_installPath,
+            '--add', $componentID,
+            '--add', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64',
+            '--includeRecommended',
+            '--noUpdateInstaller'
+          ) `
+          -NoNewWindow `
+          -Wait
+
         rm .\vs_buildtools.exe
 
         cmd /c "$env:k3DW_setup_msvc_installPath\VC\Auxiliary\Build\vcvars64.bat >nul && set" |

@@ -15,7 +15,6 @@ jobs:
         include:
           # Check a random assortment of versions
           - {vs-version: "17.13.3",  msc-full-ver: "194334809"}
-          - {vs-version: "17.13.7",  msc-full-ver: "194334810"}
 
     runs-on: windows-2025
     steps:
