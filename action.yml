@@ -15,24 +15,28 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Cache
-      uses: actions/cache@v5
-      with:
-        path: ${{ inputs.install-path }}
-        key: temp-key-0001-${{ inputs.vs-version }}
-
-    - name: Download and install VS Build Tools, and setup MSVC environment
+    - name: Resolve install path
       shell: powershell
       run: |
         mkdir ${{ inputs.install-path }} -Force
         $installPath = Resolve-Path ${{ inputs.install-path }}
+        Add-Content $env:GITHUB_ENV "k3DW_setup_msvc_installPath=$installPath"
 
+    - name: Cache
+      uses: actions/cache@v5
+      with:
+        path: ${{ env.k3DW_setup_msvc_installPath }}
+        key: temp-key-0002-${{ inputs.vs-version }}
+
+    - name: Download and install VS Build Tools, and setup MSVC environment
+      shell: powershell
+      run: |
         $scriptOutput = python ${{ github.action_path }}/get_install_args.py ${{ inputs.vs-version }} 2>&1
         if ($LASTEXITCODE -eq 0) {
           $vsVersion = $scriptOutput[0]
           $bootstrapper = $scriptOutput[1]
           $componentID = $scriptOutput[2]
-          Write-Host "Installing Visual Studio $vsVersion at $installPath"
+          Write-Host "Installing Visual Studio $vsVersion at $env:k3DW_setup_msvc_installPath"
         } else {
           Write-Host "get_install_args.py failed with exit code: $LASTEXITCODE"
           Write-Host $scriptOutput
@@ -45,7 +49,7 @@ runs:
           -FilePath ".\vs_buildtools.exe" `
           -ArgumentList @(
             '--quiet', '--norestart',
-            '--installPath', $installPath,
+            '--installPath', $env:k3DW_setup_msvc_installPath,
             '--add', $componentID,
             '--add', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64',
             '--includeRecommended',
@@ -56,7 +60,7 @@ runs:
 
         rm .\vs_buildtools.exe
 
-        cmd /c "$installPath\VC\Auxiliary\Build\vcvars64.bat >nul && set" |
+        cmd /c "$k3DW_setup_msvc_installPath\VC\Auxiliary\Build\vcvars64.bat >nul && set" |
           ForEach-Object {
             Add-Content $env:GITHUB_ENV $_
           }
