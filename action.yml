@@ -26,7 +26,7 @@ runs:
       uses: actions/cache@v5
       with:
         path: ${{ env.k3DW_setup_msvc_installPath }}
-        key: temp-key-0002-${{ inputs.vs-version }}
+        key: temp-key-0003-${{ inputs.vs-version }}
 
     - name: Download and install VS Build Tools, and setup MSVC environment
       shell: powershell
