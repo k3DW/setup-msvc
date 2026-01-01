@@ -15,6 +15,12 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Cache
+      uses: actions/cache@v5
+      with:
+        path: ${{ inputs.install-path }}
+        key: temp-key-0001-${{ inputs.vs-version }}
+
     - name: Download and install VS Build Tools, and setup MSVC environment
       shell: powershell
       run: |
