@@ -1,4 +1,4 @@
-# Generated on 2025-12-30T21:23:37
+# Generated on 2026-02-28T20:35:16
 bootstrappers = {
     "16.11.53": "https://download.visualstudio.microsoft.com/download/pr/46bb5918-5ff1-4e1c-9090-bbc63baa33b6/19f18f068b7eb660d37c9cdc3e45d1a2cffcfe00329fa098124001c7ca792c52/vs_BuildTools.exe",
     "16.11.52": "https://download.visualstudio.microsoft.com/download/pr/34565810-4264-4be7-85fb-051833a17814/cb1327cd90467deb08fbc72f285db136f2619b4e25d222a3fd2577453d2c5b7a/vs_BuildTools.exe",
@@ -210,6 +210,12 @@ bootstrappers = {
     "16.0.2": "https://download.visualstudio.microsoft.com/download/pr/3eab8ec9-8b46-4442-8ef6-d86db67df2d0/a20f8b015bc1d9f9317fa850b2d85b1f/vs_buildtools.exe",
     "16.0.1": "https://download.visualstudio.microsoft.com/download/pr/f6595fb7-8d1c-4a1d-9351-76438b0b1f33/e366280d0e6f8b6ee31985ff1a48b3ec/vs_buildtools.exe",
     "16.0.0": "https://download.visualstudio.microsoft.com/download/pr/e1791fdb-bc8c-491c-a01a-a66ca93e2ccc/c8b42c363e2885c1ae2d8bb5634a9540/vs_buildtools.exe",
+    "17.14.27": "https://download.visualstudio.microsoft.com/download/pr/b4db4ac4-8183-4dfb-b6db-c7a289006e39/39573d66dbbc46361f85fb40165544f5fd0e6c9f76076036191109c38e2ffcc8/vs_BuildTools.exe",
+    "17.14.26": "https://download.visualstudio.microsoft.com/download/pr/8ded7f52-a29c-4020-aa42-b89467fbc1ef/8ada47139771c3faa2cb9c1c62cf4d086eadc44875d18417e24f78506b99fa39/vs_BuildTools.exe",
+    "17.12.17": "https://download.visualstudio.microsoft.com/download/pr/5d23a358-8ed7-4560-81e7-fb52d6a3ae02/2b25d9b457dfaf84fcb2af5b21264322b029b6efafd3178b1a4a8a7b79a18105/vs_BuildTools.exe",
+    "17.14.25": "https://download.visualstudio.microsoft.com/download/pr/64dbe648-9527-4b8e-9b08-04d2228e1191/0f953a61f0d6f37d425e021814b0ec005035871848d9eb703208538df20476d4/vs_BuildTools.exe",
+    "17.12.16": "https://download.visualstudio.microsoft.com/download/pr/d1ce856f-ea9f-4287-a060-71b36b78eb94/66dde7ce3217523621b552b14e8fe2005e83d7458b68a6ea019f4cbf925f36e9/vs_BuildTools.exe",
+    "17.14.24": "https://download.visualstudio.microsoft.com/download/pr/6a6c3c0f-51bf-4bfb-a89c-59f6e85932b3/b3757e25169333f9ea8326f3757dfe85d78e9161f1c9bc7d5f40c22cb56a9af2/vs_BuildTools.exe",
     "17.14.23": "https://download.visualstudio.microsoft.com/download/pr/a80deb24-6a28-4d30-b99f-13b6e89c9727/5439781a4deb7951895e041d3d0a5b409034ad56070e5fc5576dda2e0e364faa/vs_BuildTools.exe",
     "17.14.22": "https://download.visualstudio.microsoft.com/download/pr/4f894be7-d4f2-4679-ace9-52a83030dab5/a7cf12bec0050e0f6153dcdc1bbe9c027f3fcdcd782e9676b50de879d7c50caf/vs_BuildTools.exe",
     "17.12.15": "https://download.visualstudio.microsoft.com/download/pr/33b9f1f9-38b6-44d0-9553-7bdf9983804a/81cf393983a1f84b9a0ba8669838bf7b6fc92ef75b806b02025b7a1ffdb91e3b/vs_BuildTools.exe",
@@ -442,6 +448,12 @@ bootstrappers = {
     "17.0.2": "https://download.visualstudio.microsoft.com/download/pr/a53da67f-8d8a-448c-b211-d234d17e6398/810b12ab293714c34c29654ef5089f11bdc49d180236b0f1927f599cdb01d5f3/vs_BuildTools.exe",
     "17.0.1": "https://download.visualstudio.microsoft.com/download/pr/8cea3871-c742-43fb-bf8b-8da0699ab4af/faa4a70c6431c2bc5e915c6ad07425c17fb1a96cd106405677aa08b6d949ba63/vs_BuildTools.exe",
     "17.0.0": "https://download.visualstudio.microsoft.com/download/pr/7aa16be3-9952-4bd2-8ecf-eae91faa0a06/321b8a214aa29dcb92fe5d3887832f2aa75a86a672a2cc1372f191dcd26908d6/vs_BuildTools.exe",
+    "18.3.2": "https://download.visualstudio.microsoft.com/download/pr/2b23517b-e100-42e1-a560-063af6edc4ec/af9e03500c9187d57c217524adafc8f7d866fd8e018e1b26f5747a5a53909a75/vs_BuildTools.exe",
+    "18.3.1": "https://download.visualstudio.microsoft.com/download/pr/5b5cda09-f12b-4e87-9fcf-38e38e09cede/ad6a8ee47ba7d5f8d952a63b80fa14e96b7d5bd08f984cf7887d68dca4ef93a5/vs_BuildTools.exe",
+    "18.3.0": "https://download.visualstudio.microsoft.com/download/pr/50e56d52-cb9f-4891-880e-59ab5de5c80d/b61f342ec77419da15ddc600ad4c571d180c38310ec823f802ca73994d5fafcd/vs_BuildTools.exe",
+    "18.2.2": "https://download.visualstudio.microsoft.com/download/pr/3810a5da-d66b-47a0-80c0-ed7e656cb327/a2fa3b5b06dcea62de99a258eafa9d7fccd8f5165637172f5dac7bcbaa534c8d/vs_BuildTools.exe",
+    "18.2.1": "https://download.visualstudio.microsoft.com/download/pr/98009c04-e4b8-4223-8794-58f961de75a4/66275a026e820f22468a0dab1a4ae9231ef95592e00d3fc50d0cb36fcd8fcfac/vs_BuildTools.exe",
+    "18.2.0": "https://download.visualstudio.microsoft.com/download/pr/83a2d131-5e82-4f5c-b9c3-a83a3d02012e/4674ec4e366a2fd86504f15a64198dd401ceaa909e6d420205b1bc25a353a37b/vs_BuildTools.exe",
     "18.1.1": "https://download.visualstudio.microsoft.com/download/pr/6efb3484-905b-485c-8b5f-9d3a5f39e731/8a34e46d7ca2d21f2f3120da1fba7e9ec025732dda7d6eb4c7468b94674ae6c1/vs_BuildTools.exe",
     "18.1.0": "https://download.visualstudio.microsoft.com/download/pr/451b234a-4e25-491d-a007-bf3e55b2562f/442956195fde7b7a0be755d2dc1bc405c05b80115f26bac3b569cb0c358b303f/vs_BuildTools.exe",
     "18.0.2": "https://download.visualstudio.microsoft.com/download/pr/a424e95b-20f6-4af6-844f-9d9a806080a7/c0acc2ada8143bca302248df650bcf4e5208c610d0fcf0d8345ef737d0e6f784/vs_BuildTools.exe",
