@@ -45,7 +45,7 @@ jobs:
     runs-on: windows-2025-vs2026
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup MSVC
         uses: k3DW/setup-msvc@v1
