@@ -1,4 +1,4 @@
-# Copyright 2025 Braden Ganetsky
+# Copyright 2025-2026 Braden Ganetsky
 # Distributed under the Boost Software License, Version 1.0.
 # https://www.boost.org/LICENSE_1_0.txt
 
@@ -60,6 +60,8 @@ def scrape_bootstrappers_2026() -> dict:
     bootstrappers : dict = extract_bootstrappers(fetch_html("https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-history"))
     assert "18.0.0" in bootstrappers
     assert "18.1.1" in bootstrappers
+    assert "18.5.3" in bootstrappers
+    assert "18.6.0" in bootstrappers
     return bootstrappers
 
 def scrape_bootstrappers(major: int) -> dict:
@@ -123,7 +125,7 @@ def buildtools_component_id(v: Version) -> str:
     assert v.patch >= 0
 
     if v.major == 18:
-        number = f"14.{v.minor+50}.18.{v.minor}"
+        number = f"14.{(v.minor//6)+50}.18.{v.minor}"
     elif v.major == 17:
         assert v.minor <= 14
         number = f"14.{v.minor+30}.17.{v.minor}"
