@@ -1,4 +1,4 @@
-# Copyright 2025 Braden Ganetsky
+# Copyright 2025-2026 Braden Ganetsky
 # Distributed under the Boost Software License, Version 1.0.
 # https://www.boost.org/LICENSE_1_0.txt
 
@@ -35,8 +35,14 @@ jobs:
           - {vs-version: "17.14.5",  msc-full-ver: "194435209"}
           - {vs-version: "17.14.21", msc-full-ver: "194435221"}
           - {vs-version: "17.14.23", msc-full-ver: "194435222"}
+          - {vs-version: "18.0.0",   msc-full-ver: "195035717"}
+          - {vs-version: "18.0.2",   msc-full-ver: "195035719"}
+          - {vs-version: "18.0",     msc-full-ver: "195035719"}
+          - {vs-version: "18.4.4",   msc-full-ver: "195035728"}
+          - {vs-version: "18.5.3",   msc-full-ver: "195035730"}
+          - {vs-version: "18.6.0",   msc-full-ver: "195136243"}
 
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -54,8 +60,10 @@ jobs:
             cmake . -B build -G "Visual Studio 16 2019"
           } elseif ("${{ matrix.vs-version }}".StartsWith("17.")) {
             cmake . -B build -G "Visual Studio 17 2022"
+          } elseif ("${{ matrix.vs-version }}".StartsWith("18.")) {
+            cmake . -B build -G "Visual Studio 18 2026"
           } else {
-            Write-Host "Currently only VS 2019 and VS 2022 are supported in testing"
+            Write-Host "Currently only VS 2019, 2022, and 2026 are supported in testing"
             exit 1
           }
           cmake --build build --target msc_full_ver
